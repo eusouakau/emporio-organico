@@ -52,7 +52,7 @@ public class LinhaGerenciamentoAdapter extends BaseAdapter {
         AppCompatTextView textViewNome  =  viewLinhaLista.findViewById(R.id.textViewNome);
         AppCompatTextView textViewValor = viewLinhaLista.findViewById(R.id.textViewValor);
         AppCompatTextView textViewDescricao = viewLinhaLista.findViewById(R.id.textViewDescricao);
-        AppCompatTextView textViewFornecedor = viewLinhaLista.findViewById(R.id.textViewFornecedor;
+        AppCompatTextView textViewFornecedor = viewLinhaLista.findViewById(R.id.textViewFornecedor);
         AppCompatButton buttonExcluir = viewLinhaLista.findViewById(R.id.buttonExcluir);
         AppCompatButton buttonEditar = viewLinhaLista.findViewById(R.id.buttonEditar);
 
