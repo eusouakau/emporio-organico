@@ -3,6 +3,7 @@ package com.example.emporio_organico.view;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -63,4 +64,39 @@ public class RegisterActivity extends AppCompatActivity {
         fornecedor.setText("");
     }
 
+    /*private boolean validarCampos(){
+        if(txtNome.getText().toString().isEmpty()){
+            layoutNome.setErrorEnabled(true);
+            layoutNome.setError("O nome é obrigatório!");
+            return false;
+        }else{
+            layoutNome.setErrorEnabled(false);
+        }
+
+        if(txtValor.getText().toString().isEmpty()){
+            layoutValor.setErrorEnabled(true);
+            layoutValor.setError("O valor é obrigatório");
+            return false;
+        }else{
+            layoutValor.setErrorEnabled(false);
+        }
+        if(txtDescricao.getText().toString().isEmpty()){
+            layoutDescricao.setErrorEnabled(true);
+            layoutDescricao.setError("A descricao é obrigatória!");
+            return false;
+        }else{
+            layoutDescricao.setErrorEnabled(false);
+        }
+
+        if(txtFornecedor.getText().toString().isEmpty()){
+            layoutFronecedor.setErrorEnabled(true);
+            layoutFornecedor.setError("O fornecedor é obrigatório!");
+            return false;
+        }else{
+            layoutFornecedor.setErrorEnabled(false);
+        }
+
+        Log.d("validacao", "saiu no validar");
+        return true;
+    }*/
 }
