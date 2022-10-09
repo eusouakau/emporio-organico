@@ -2,7 +2,6 @@ package com.example.emporio_organico.view;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,7 +19,7 @@ public class MenuActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         ListView listaOpcoes = this.findViewById(R.id.lista);
-        String[] itens = {"Cadastro", "Cardapio", "Venha até nós", "Sobre nós", "Gerenciamento", "Fale Conosco"};
+        String[] itens = {"Cadastro", "Gerenciamento", "Venha até nós", "Sobre nós"};
         ArrayAdapter<String> arrayItens = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,itens);
         listaOpcoes.setAdapter(arrayItens);
         listaOpcoes.setOnItemClickListener(this);
@@ -35,22 +34,14 @@ public class MenuActivity extends AppCompatActivity implements AdapterView.OnIte
                 startActivity(intent);
                 break;
             case 1:
-                intent = new Intent(this, MenuActivity.class);
-                startActivity(intent);
-                break;
-            case 2:
-                abrirLocalizacao(view);
-                break;
-            case 3:
-                intent = new Intent(this, MenuActivity.class);
-                startActivity(intent);
-                break;
-            case 4:
                 intent = new Intent(this, ManagerActivity.class);
                 startActivity(intent);
                 break;
-            case 5:
-                faleConosco(view);
+            case 2:
+
+                break;
+            case 3:
+
                 break;
             default:
                 intent = new Intent(this, MainActivity.class);
@@ -58,16 +49,4 @@ public class MenuActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
-    public void abrirLocalizacao(View view){
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse("geo:-30.037785869789733, -51.223973388470434"));
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-        }
-    }
-
-    public void faleConosco(View view){
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://starbucks.com.br/sobre/atendimento"));
-        startActivity(intent);
-    }
 }
