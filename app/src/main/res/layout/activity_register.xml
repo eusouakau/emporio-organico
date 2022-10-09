@@ -1,130 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutLogin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".view.RegisterActivity"
-    >
+    android:orientation="vertical"
+    android:padding="16dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.RegisterActivity">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="116dp"
-        android:layout_height="45dp"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="150dp"
-        android:text="cadastro"
-        android:textColor="@color/cinza"
-        android:textSize="27sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="300dp"
-        android:layout_height="350dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.708">
-
-        <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutName"
+        app:counterEnabled="true"
+        app:counterMaxLength="30"
+        app:errorEnabled="true"
+        app:hintTextColor="?attr/colorPrimary">
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextNome"
-            android:layout_width="280dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="10dp"
-            android:ems="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="Nome"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.429"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
-
-        <EditText
+            android:hint="Nome" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutValor"
+        app:counterEnabled="true"
+        app:errorEnabled="true"
+        app:hintTextColor="?attr/colorPrimary">
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextValor"
-            android:layout_width="280dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginRight="10dp"
-            android:ems="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:inputType="numberDecimal"
-            android:hint="Preço"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.443"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/coffeeName" />
-
-        <EditText
+            android:hint="Valor" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutDescricao"
+        app:counterEnabled="true"
+        app:counterMaxLength="180"
+        app:errorEnabled="true"
+        app:hintTextColor="?attr/colorPrimary">
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextDescricao"
-            android:layout_width="280dp"
-            android:layout_height="95dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="125dp"
-            android:layout_marginRight="10dp"
-            android:ems="10"
-            android:gravity="start|top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:inputType="textMultiLine"
-            android:hint="Descrição"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.433"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/price" />
-
-        <EditText
+            android:hint="Descrição" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutFornecedor"
+        app:counterEnabled="true"
+        app:counterMaxLength="180"
+        app:errorEnabled="true"
+        app:hintTextColor="?attr/colorPrimary">
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextFornecedor"
-            android:layout_width="280dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="235dp"
-            android:layout_marginRight="10dp"
-            android:hint="Fornecedor"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.443"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description"
-            app:layout_constraintVertical_bias="0.024" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fornecedor" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="cadastrar" />
 
-        <Button
-            android:id="@+id/registerButton"
-            android:layout_width="130dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="155dp"
-            android:layout_marginTop="300dp"
-            android:layout_marginRight="10dp"
-            android:text="cadastrar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cafeList"
-            app:layout_constraintVertical_bias="0.167" />
 
-        <Button
-            android:id="@+id/cancelButton"
-            android:layout_width="130dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="300dp"
-            android:layout_marginRight="155dp"
-            android:text="cancelar"
-            android:onClick="cancelarCadastro"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/registerButton"
-            app:layout_constraintHorizontal_bias="0.796"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cafeList"
-            app:layout_constraintVertical_bias="0.165" />
-    </androidx.cardview.widget.CardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
