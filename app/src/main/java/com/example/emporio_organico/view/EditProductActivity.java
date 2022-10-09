@@ -8,20 +8,25 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.emporio_organico.R;
 import com.example.emporio_organico.dao.AppDatabase;
 import com.example.emporio_organico.dao.ProductDAO;
 import com.example.emporio_organico.entity.Product;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class EditProductActivity extends AppCompatActivity {
 
-    EditText editTextNome ;
-    EditText editTextDesc;
-    EditText editTextValor;
-    EditText editTextFornecedor;
+    private TextInputEditText editNome;
+    private TextInputEditText editValor;
+    private TextInputEditText editDescricao;
+    private TextInputEditText editFornecedor;
+    private TextInputLayout layoutNome;
+    private TextInputLayout layoutValor;
+    private TextInputLayout layoutDescricao;
+    private TextInputLayout layoutFornecedor;
+
     AppCompatButton botaoEditar ;
     Product product ;
 
@@ -29,10 +34,10 @@ public class EditProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_product);
-        editTextNome = this.findViewById(R.id.editTextNomeEdit);
-        editTextDesc =  this.findViewById(R.id.editTextDescricaoEdit);
-        editTextValor =  this.findViewById(R.id.editTextValorEdit);
-        editTextFornecedor =  this.findViewById(R.id.editTextFornecedor);
+        editNome = this.findViewById(R.id.editTextNome);
+        editDescricao =  this.findViewById(R.id.editTextDescricao);
+        editValor =  this.findViewById(R.id.editTextValor);
+        editFornecedor =  this.findViewById(R.id.editTextFornecedor);
         botaoEditar =  this.findViewById(R.id.saveButton);
 
         botaoEditar.setOnClickListener(new View.OnClickListener(){
@@ -43,34 +48,20 @@ public class EditProductActivity extends AppCompatActivity {
         });
         Bundle extra =  this.getIntent().getExtras();
         product = (Product) getIntent().getSerializableExtra("product");
-        editTextNome.setText(product.getNome());
-        editTextDesc.setText(product.getDescricao());
-        editTextValor.setText(String.valueOf(product.getValor()));
-        editTextFornecedor.setText(product.getFornecedor());
+        editNome.setText(product.getNome());
+        editDescricao.setText(product.getDescricao());
+        editValor.setText(String.valueOf(product.getValor()));
+        editFornecedor.setText(product.getFornecedor());
     }
 
     private void alterarProduto() {
-        if (editTextNome.getText().toString().trim().equals("")) {
-            Toast.makeText(getApplicationContext(), "Nome é obrigatório!", Toast.LENGTH_LONG).show();
-            editTextNome.requestFocus();
-        } else if (editTextDesc.getText().toString().trim().equals("")) {
-            Toast.makeText(getApplicationContext(), "Descrição é obrigatório!", Toast.LENGTH_LONG).show();
-            editTextDesc.requestFocus();
-        } else if (editTextValor.getText().toString().trim().equals("")) {
-            Toast.makeText(getApplicationContext(), "O valor é obrigatório!", Toast.LENGTH_LONG).show();
-            editTextValor.requestFocus();
-        } else if (editTextFornecedor.getText().toString().trim().equals("")) {
-            Toast.makeText(getApplicationContext(), "O fornecedor é obrigatório!", Toast.LENGTH_LONG).show();
-            editTextFornecedor.requestFocus();
-        } else {
-            product.setNome(editTextNome.getText().toString().trim());
-            product.setDescricao(editTextDesc.getText().toString().trim());
-            product.setValor(Double.parseDouble(editTextValor.getText().toString().trim()));
-            product.setFornecedor(editTextFornecedor.getText().toString().trim());
+            product.setNome(editNome.getText().toString().trim());
+            product.setDescricao(editDescricao.getText().toString().trim());
+            product.setValor(Double.parseDouble(editValor.getText().toString().trim()));
+            product.setFornecedor(editFornecedor.getText().toString().trim());
             ProductDAO productDAO = AppDatabase.getInstance(getApplicationContext()).createProductDAO();
             productDAO.update(product);
             mostraMensagem();
-        }
     }
 
     public void mostraMensagem(){
@@ -87,10 +78,5 @@ public class EditProductActivity extends AppCompatActivity {
             }
         });
         alertDialog.show();
-    }
-
-    public void cancelarEdicao(View view){
-        Intent intent = new Intent(this, MenuActivity.class);
-        startActivity(intent);
     }
 }
