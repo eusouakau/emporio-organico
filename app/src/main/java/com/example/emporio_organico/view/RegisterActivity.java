@@ -14,13 +14,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.emporio_organico.R;
 import com.example.emporio_organico.dao.AppDatabase;
 import com.example.emporio_organico.entity.Product;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText nome;
-    EditText valor;
-    EditText descricao;
-    EditText fornecedor;
+    private TextInputEditText nome;
+    private TextInputEditText valor;
+    private TextInputEditText descricao;
+    private TextInputEditText fornecedor;
+    private TextInputLayout layoutNome;
+    private TextInputLayout layoutValor;
+    private TextInputLayout layoutDescricao;
+    private TextInputLayout layoutFornecedor;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,28 +41,37 @@ public class RegisterActivity extends AppCompatActivity {
             @SuppressLint("WrongViewCast")
             @Override
             public void onClick(View v) {
+                Log.d("validacao 44", "saiu no validar");
                 nome = findViewById(R.id.editTextNome);
                 valor = findViewById(R.id.editTextValor);
                 descricao = findViewById((R.id.editTextDescricao));
                 fornecedor = findViewById(R.id.editTextFornecedor);
-                Product product = new Product();
-                product.setNome(nome.getText().toString());
-                product.setValor(Double.parseDouble(valor.getText().toString()));
-                product.setDescricao(descricao.getText().toString());
-                product.setFornecedor(fornecedor.getText().toString());
-                AppDatabase.getInstance(getApplicationContext()).createProductDAO().insert(product);
-                Toast.makeText(getApplicationContext(), "Novo produto cadastrado!", Toast.LENGTH_LONG).show();
-                limparCampos();
+                layoutNome = findViewById(R.id.layoutNome);
+                layoutValor = findViewById(R.id.layoutValor);
+                layoutDescricao = findViewById((R.id.layoutDescricao));
+                layoutFornecedor = findViewById(R.id.layoutFornecedor);
+                Log.d("validacao53", "saiu no validar");
+                Snackbar snackbar;
+                if(validarCampos()){
+                    Product product = new Product();
+                    product.setNome(nome.getText().toString());
+                    product.setValor(Double.parseDouble(valor.getText().toString()));
+                    product.setDescricao(descricao.getText().toString());
+                    product.setFornecedor(fornecedor.getText().toString());
+                    AppDatabase.getInstance(getApplicationContext()).createProductDAO().insert(product);
+                    snackbar = Snackbar.make(v, "Produto cadastrado com sucesso!", Snackbar.LENGTH_LONG);
+                    limparCampos();
+                }
+                else {
+                    snackbar = Snackbar.make(v, "Informações insuficientes para cadastrar produto!", Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
             }
         });
     }
 
-    public void cancelarCadastro(View view){
-        Intent intent = new Intent(this, MenuActivity.class);
-        startActivity(intent);
-    }
-
     private void limparCampos() {
+        layoutNome = findViewById(R.id.layoutNome);
         nome = findViewById(R.id.editTextNome);
         valor = findViewById(R.id.editTextValor);
         descricao = findViewById((R.id.editTextDescricao));
@@ -64,8 +82,8 @@ public class RegisterActivity extends AppCompatActivity {
         fornecedor.setText("");
     }
 
-    /*private boolean validarCampos(){
-        if(txtNome.getText().toString().isEmpty()){
+    private boolean validarCampos(){
+        if(nome.getText().toString().isEmpty()){
             layoutNome.setErrorEnabled(true);
             layoutNome.setError("O nome é obrigatório!");
             return false;
@@ -73,14 +91,14 @@ public class RegisterActivity extends AppCompatActivity {
             layoutNome.setErrorEnabled(false);
         }
 
-        if(txtValor.getText().toString().isEmpty()){
+       if(valor.getText().toString().trim().equals("")){
             layoutValor.setErrorEnabled(true);
             layoutValor.setError("O valor é obrigatório");
             return false;
         }else{
             layoutValor.setErrorEnabled(false);
         }
-        if(txtDescricao.getText().toString().isEmpty()){
+        if(descricao.getText().toString().isEmpty()){
             layoutDescricao.setErrorEnabled(true);
             layoutDescricao.setError("A descricao é obrigatória!");
             return false;
@@ -88,8 +106,8 @@ public class RegisterActivity extends AppCompatActivity {
             layoutDescricao.setErrorEnabled(false);
         }
 
-        if(txtFornecedor.getText().toString().isEmpty()){
-            layoutFronecedor.setErrorEnabled(true);
+        if(fornecedor.getText().toString().isEmpty()){
+            layoutFornecedor.setErrorEnabled(true);
             layoutFornecedor.setError("O fornecedor é obrigatório!");
             return false;
         }else{
@@ -98,5 +116,5 @@ public class RegisterActivity extends AppCompatActivity {
 
         Log.d("validacao", "saiu no validar");
         return true;
-    }*/
+    }
 }
