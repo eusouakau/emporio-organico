@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
+
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
 
@@ -55,8 +57,8 @@ public class LinhaGerenciamentoAdapter extends BaseAdapter {
         AppCompatTextView textViewValor = viewLinhaLista.findViewById(R.id.textViewValor);
         AppCompatTextView textViewDescricao = viewLinhaLista.findViewById(R.id.textViewDescricao);
         AppCompatTextView textViewFornecedor = viewLinhaLista.findViewById(R.id.textViewFornecedor);
-        AppCompatButton buttonExcluir = viewLinhaLista.findViewById(R.id.buttonExcluir);
-        AppCompatButton buttonEditar = viewLinhaLista.findViewById(R.id.buttonEditar);
+        ImageButton buttonExcluir = viewLinhaLista.findViewById(R.id.buttonExcluir);
+        ImageButton buttonEditar = viewLinhaLista.findViewById(R.id.buttonEditar);
 
         textViewNome.setText(products.get(position).getNome());
         textViewValor.setText(String.valueOf(products.get(position).getValor()));

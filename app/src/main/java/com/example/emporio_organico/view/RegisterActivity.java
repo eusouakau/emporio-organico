@@ -21,6 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextInputEditText valor;
     private TextInputEditText descricao;
     private TextInputEditText fornecedor;
+
     private TextInputLayout layoutNome;
     private TextInputLayout layoutValor;
     private TextInputLayout layoutDescricao;
