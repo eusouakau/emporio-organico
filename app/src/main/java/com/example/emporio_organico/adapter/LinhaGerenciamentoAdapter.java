@@ -65,7 +65,7 @@ public class LinhaGerenciamentoAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 ProductDAO productDAO = AppDatabase.getInstance(listarProdutos.getApplicationContext()).createProductDAO();
-                List<Product> products = productDAO.getAllProduct();
+                List<Product> products = productDAO.getAllProducts();
                 productDAO.delete(products.get(position));
                 atualizaLista(position);
             }
@@ -76,7 +76,7 @@ public class LinhaGerenciamentoAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(listarProdutos, EditProductActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("produtos",products.get(position));
+                intent.putExtra("produtos", products.get(position));
                 listarProdutos.startActivity(intent);
             }
         });

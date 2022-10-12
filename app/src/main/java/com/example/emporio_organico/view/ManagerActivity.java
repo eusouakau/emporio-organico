@@ -23,7 +23,7 @@ public class ManagerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_manager);
         managerList = this.findViewById(R.id.productList);
         ProductDAO productDAO = AppDatabase.getInstance(getApplicationContext()).createProductDAO();
-        getAll(productDAO.getAllProduct());
+        getAll(productDAO.getAllProducts());
     }
     protected  void getAll(List<Product> products){
         managerList.setAdapter(new LinhaGerenciamentoAdapter(this, products));

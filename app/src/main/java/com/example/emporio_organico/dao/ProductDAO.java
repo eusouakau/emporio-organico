@@ -16,7 +16,7 @@ import static androidx.room.OnConflictStrategy.REPLACE;
 public interface ProductDAO {
 
     @Query("SELECT * FROM Product")
-    public List<Product> getAllProduct();
+    public List<Product> getAllProducts();
 
     @Query("SELECT * FROM Product WHERE nome = :name")
     public List<Product> geProductByName(String name);
