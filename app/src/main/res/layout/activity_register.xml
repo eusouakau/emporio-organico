@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/layoutValor"
         app:counterEnabled="true"
+        app:counterMaxLength="5"
         app:errorEnabled="true"
         app:hintTextColor="?attr/colorPrimary">
         <com.google.android.material.textfield.TextInputEditText
