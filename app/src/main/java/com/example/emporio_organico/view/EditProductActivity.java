@@ -78,6 +78,9 @@ public class EditProductActivity extends AppCompatActivity {
             productDAO.update(product);
             snackbar = Snackbar.make(v, "Produto alterado com sucesso!", Snackbar.LENGTH_LONG);
             snackbar.show();
+            Intent intent = new Intent(getApplicationContext(), ManagerActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 
