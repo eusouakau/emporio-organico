@@ -13,7 +13,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:onClick="entrarMenu"
-        android:text="entrar"
+        android:text="@string/start_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.552"

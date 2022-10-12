@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="Nome" />
+            android:hint="@string/nome" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
-            android:hint="Valor" />
+            android:hint="@string/valor" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
-            android:hint="Descrição" />
+            android:hint="@string/descricao" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -65,13 +65,13 @@
             android:id="@+id/editTextFornecedor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Fornecedor" />
+            android:hint="@string/fornecedor" />
     </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="salvar" />
+        android:text="@string/salvar_alt" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
