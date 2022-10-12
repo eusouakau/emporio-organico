@@ -1,19 +1,16 @@
 package com.example.emporio_organico.view;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.emporio_organico.R;
 import com.example.emporio_organico.dao.AppDatabase;
 import com.example.emporio_organico.entity.Product;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -41,16 +38,17 @@ public class RegisterActivity extends AppCompatActivity {
             @SuppressLint("WrongViewCast")
             @Override
             public void onClick(View v) {
-                Log.d("validacao 44", "saiu no validar");
+
                 nome = findViewById(R.id.editTextNome);
                 valor = findViewById(R.id.editTextValor);
                 descricao = findViewById((R.id.editTextDescricao));
                 fornecedor = findViewById(R.id.editTextFornecedor);
+
                 layoutNome = findViewById(R.id.layoutNome);
                 layoutValor = findViewById(R.id.layoutValor);
                 layoutDescricao = findViewById((R.id.layoutDescricao));
                 layoutFornecedor = findViewById(R.id.layoutFornecedor);
-                Log.d("validacao53", "saiu no validar");
+
                 Snackbar snackbar;
                 if(validarCampos()){
                     Product product = new Product();
@@ -88,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
             layoutNome.setErrorEnabled(true);
             layoutNome.setError("O nome é obrigatório!");
             return false;
-        }else{
+        } else{
             layoutNome.setErrorEnabled(false);
         }
 
@@ -96,26 +94,25 @@ public class RegisterActivity extends AppCompatActivity {
             layoutValor.setErrorEnabled(true);
             layoutValor.setError("O valor é obrigatório");
             return false;
-        }else{
+       } else{
             layoutValor.setErrorEnabled(false);
-        }
-        if(descricao.getText().toString().isEmpty()){
+       }
+       if(descricao.getText().toString().isEmpty()){
             layoutDescricao.setErrorEnabled(true);
             layoutDescricao.setError("A descricao é obrigatória!");
             return false;
-        }else{
+       } else {
             layoutDescricao.setErrorEnabled(false);
-        }
+       }
 
-        if(fornecedor.getText().toString().isEmpty()){
+       if(fornecedor.getText().toString().isEmpty()){
             layoutFornecedor.setErrorEnabled(true);
             layoutFornecedor.setError("O fornecedor é obrigatório!");
             return false;
-        }else{
+       } else {
             layoutFornecedor.setErrorEnabled(false);
-        }
+       }
 
-        Log.d("validacao", "saiu no validar");
-        return true;
+       return true;
     }
 }
