@@ -60,6 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
                     product.setFornecedor(fornecedor.getText().toString());
                     AppDatabase.getInstance(getApplicationContext()).createProductDAO().insert(product);
                     snackbar = Snackbar.make(v, "Produto cadastrado com sucesso!", Snackbar.LENGTH_LONG);
+                    snackbar.show();
                     limparCampos();
                 }
                 else {
