@@ -16,6 +16,7 @@ import com.example.emporio_organico.dao.ProductDAO;
 import com.example.emporio_organico.entity.Product;
 import com.example.emporio_organico.view.EditProductActivity;
 import com.example.emporio_organico.view.ManagerActivity;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -40,6 +41,7 @@ public class LinhaGerenciamentoAdapter extends BaseAdapter {
     public Object getItem(int position) {
         return position;
     }
+
     @Override
     public long getItemId(int position) {
         return position;
@@ -67,7 +69,7 @@ public class LinhaGerenciamentoAdapter extends BaseAdapter {
                 ProductDAO productDAO = AppDatabase.getInstance(listarProdutos.getApplicationContext()).createProductDAO();
                 List<Product> products = productDAO.getAllProducts();
                 productDAO.delete(products.get(position));
-                atualizaLista(position);
+                atualizaLista(position, v);
             }
         });
 
@@ -83,9 +85,10 @@ public class LinhaGerenciamentoAdapter extends BaseAdapter {
         return viewLinhaLista;
     }
 
-    public void atualizaLista(int position){
+    public void atualizaLista(int position, View v){
         String mensagem = "Produto excluído com sucesso!";
-        Toast.makeText(listarProdutos, mensagem, Toast.LENGTH_LONG).show();
+        Snackbar snackbar = Snackbar.make(v, mensagem, Snackbar.LENGTH_LONG);
+        snackbar.show();
         this.products.remove(position);
         this.notifyDataSetChanged();
     }
