@@ -2,6 +2,7 @@ package com.example.emporio_organico.view;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,15 +12,14 @@ import android.widget.ListView;
 import com.example.emporio_organico.R;
 
 public class MenuActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
-
-    View view;
+    View v;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         ListView listaOpcoes = this.findViewById(R.id.lista);
-        String[] itens = {"Cadastro", "Gerenciamento", "Venha até nós", "Sobre nós"};
+        String[] itens = {"Cadastro", "Gerenciamento", "O que é um produto orgânico?", "Sobre nós"};
         ArrayAdapter<String> arrayItens = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,itens);
         listaOpcoes.setAdapter(arrayItens);
         listaOpcoes.setOnItemClickListener(this);
@@ -38,7 +38,7 @@ public class MenuActivity extends AppCompatActivity implements AdapterView.OnIte
                 startActivity(intent);
                 break;
             case 2:
-
+                abrirInfos(v);
                 break;
             case 3:
 
@@ -47,6 +47,11 @@ public class MenuActivity extends AppCompatActivity implements AdapterView.OnIte
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
         }
+    }
+
+    public void abrirInfos(View view){
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.maeterra.com.br/sobre-mae-terra/7-principios/organicos-cada-vez-mais.html"));
+        startActivity(intent);
     }
 
 }

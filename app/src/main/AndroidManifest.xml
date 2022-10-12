@@ -12,16 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Emporioorganico"
         tools:targetApi="31">
+
         <activity
             android:name=".view.EditProductActivity"
             android:exported="false"
-            android:parentActivityName=".view.ManagerActivity"/>
-
+            android:parentActivityName=".view.ManagerActivity" />
         <activity
             android:name=".view.ManagerActivity"
             android:exported="false"
-            android:parentActivityName=".view.MenuActivity"
-            />
+            android:parentActivityName=".view.MenuActivity" />
         <activity
             android:name=".view.MenuActivity"
             android:exported="false"
