@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.emporio_organico.R;
 import com.example.emporio_organico.dao.AppDatabase;
@@ -55,6 +56,23 @@ public class EditProductActivity extends AppCompatActivity {
     }
 
     private void alterarProduto() {
+        if (editNome.getText().toString().trim().equals("")) {
+            Toast.makeText(getApplicationContext(), "Nome é obrigatório!", Toast.LENGTH_LONG).show();
+            editNome.requestFocus();
+        } else if (editDescricao.getText().toString().trim().equals("")) {
+            Toast.makeText(getApplicationContext(), "Descrição é obrigatório!", Toast.LENGTH_LONG).show();
+            editDescricao.requestFocus();
+        } else if (editValor.getText().toString().trim().equals("")) {
+            Toast.makeText(getApplicationContext(), "O valor é obrigatório!", Toast.LENGTH_LONG).show();
+            editValor.requestFocus();
+        } else if (editFornecedor.getText().toString().trim().equals("")) {
+            Toast.makeText(getApplicationContext(), "O fornecedor é obrigatório!", Toast.LENGTH_LONG).show();
+            editFornecedor.requestFocus();
+        } else {
+            product.setNome(editNome.getText().toString().trim());
+            product.setDescricao(editDescricao.getText().toString().trim());
+            product.setValor(Double.parseDouble(editValor.getText().toString().trim()));
+            product.setFornecedor(editFornecedor.getText().toString().trim());
             product.setNome(editNome.getText().toString().trim());
             product.setDescricao(editDescricao.getText().toString().trim());
             product.setValor(Double.parseDouble(editValor.getText().toString().trim()));
@@ -62,6 +80,7 @@ public class EditProductActivity extends AppCompatActivity {
             ProductDAO productDAO = AppDatabase.getInstance(getApplicationContext()).createProductDAO();
             productDAO.update(product);
             mostraMensagem();
+        }
     }
 
     public void mostraMensagem(){
