@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Toast;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
 
@@ -16,6 +15,7 @@ import com.example.emporio_organico.dao.ProductDAO;
 import com.example.emporio_organico.entity.Product;
 import com.example.emporio_organico.view.EditProductActivity;
 import com.example.emporio_organico.view.ManagerActivity;
+
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
@@ -78,7 +78,7 @@ public class LinhaGerenciamentoAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(listarProdutos, EditProductActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("produtos", products.get(position));
+                intent.putExtra("product", products.get(position));
                 listarProdutos.startActivity(intent);
             }
         });
