@@ -7,6 +7,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.example.emporio_organico.R;
 import com.example.emporio_organico.dao.AppDatabase;
 import com.example.emporio_organico.dao.ProductDAO;
 import com.example.emporio_organico.entity.Product;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -39,12 +41,18 @@ public class EditProductActivity extends AppCompatActivity {
         editDescricao =  this.findViewById(R.id.editTextDescricao);
         editValor =  this.findViewById(R.id.editTextValor);
         editFornecedor =  this.findViewById(R.id.editTextFornecedor);
+        Log.d("validacao 44", "saiu no validar");
+        layoutNome = findViewById(R.id.layoutNome);
+        layoutValor = findViewById(R.id.layoutValor);
+        layoutDescricao = findViewById((R.id.layoutDescricao));
+        layoutFornecedor = findViewById(R.id.layoutFornecedor);
+        Log.d("validacao53", "saiu no validar");
         botaoEditar =  this.findViewById(R.id.saveButton);
 
         botaoEditar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                alterarProduto();
+                alterarProduto(v);
             }
         });
         Bundle extra =  this.getIntent().getExtras();
@@ -55,20 +63,9 @@ public class EditProductActivity extends AppCompatActivity {
         editFornecedor.setText(product.getFornecedor());
     }
 
-    private void alterarProduto() {
-        if (editNome.getText().toString().trim().equals("")) {
-            Toast.makeText(getApplicationContext(), "Nome é obrigatório!", Toast.LENGTH_LONG).show();
-            editNome.requestFocus();
-        } else if (editDescricao.getText().toString().trim().equals("")) {
-            Toast.makeText(getApplicationContext(), "Descrição é obrigatório!", Toast.LENGTH_LONG).show();
-            editDescricao.requestFocus();
-        } else if (editValor.getText().toString().trim().equals("")) {
-            Toast.makeText(getApplicationContext(), "O valor é obrigatório!", Toast.LENGTH_LONG).show();
-            editValor.requestFocus();
-        } else if (editFornecedor.getText().toString().trim().equals("")) {
-            Toast.makeText(getApplicationContext(), "O fornecedor é obrigatório!", Toast.LENGTH_LONG).show();
-            editFornecedor.requestFocus();
-        } else {
+    private void alterarProduto(View v) {
+        Snackbar snackbar;
+        if(validarCampos()) {
             product.setNome(editNome.getText().toString().trim());
             product.setDescricao(editDescricao.getText().toString().trim());
             product.setValor(Double.parseDouble(editValor.getText().toString().trim()));
@@ -79,23 +76,45 @@ public class EditProductActivity extends AppCompatActivity {
             product.setFornecedor(editFornecedor.getText().toString().trim());
             ProductDAO productDAO = AppDatabase.getInstance(getApplicationContext()).createProductDAO();
             productDAO.update(product);
-            mostraMensagem();
+            snackbar = Snackbar.make(v, "Produto alterado com sucesso!", Snackbar.LENGTH_LONG);
+            snackbar.show();
         }
     }
 
-    public void mostraMensagem(){
-        String msg = "Produto alterado com sucesso! ";
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setTitle(R.string.app_name);
-        alertDialog.setMessage(msg);
-        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                Intent intent = new Intent(getApplicationContext(), ManagerActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        alertDialog.show();
+    private boolean validarCampos(){
+        if(editNome.getText().toString().isEmpty()){
+            layoutNome.setErrorEnabled(true);
+            layoutNome.setError("O nome é obrigatório!");
+            return false;
+        }else{
+            layoutNome.setErrorEnabled(false);
+        }
+
+        if(editValor.getText().toString().trim().equals("")){
+            layoutValor.setErrorEnabled(true);
+            layoutValor.setError("O valor é obrigatório");
+            return false;
+        }else{
+            layoutValor.setErrorEnabled(false);
+        }
+        if(editDescricao.getText().toString().isEmpty()){
+            layoutDescricao.setErrorEnabled(true);
+            layoutDescricao.setError("A descricao é obrigatória!");
+            return false;
+        }else{
+            layoutDescricao.setErrorEnabled(false);
+        }
+
+        if(editFornecedor.getText().toString().isEmpty()){
+            layoutFornecedor.setErrorEnabled(true);
+            layoutFornecedor.setError("O fornecedor é obrigatório!");
+            return false;
+        }else{
+            layoutFornecedor.setErrorEnabled(false);
+        }
+
+        Log.d("validacao", "saiu no validar");
+        return true;
     }
+
 }
