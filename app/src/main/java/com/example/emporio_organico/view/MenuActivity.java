@@ -38,25 +38,17 @@ public class MenuActivity extends AppCompatActivity implements AdapterView.OnIte
                 startActivity(intent);
                 break;
             case 2:
-                abrirInfos(v);
+                intent = new Intent(this, StoreActivity.class);
+                startActivity(intent);
                 break;
             case 3:
-                abrirOndeComprar(v);
+                intent = new Intent(this, InfosActivity.class);
+                startActivity(intent);
                 break;
             default:
                 intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
         }
-    }
-
-    public void abrirInfos(View view){
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.maeterra.com.br/sobre-mae-terra/7-principios/organicos-cada-vez-mais.html"));
-        startActivity(intent);
-    }
-
-    public void abrirOndeComprar(View view){
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.sintropico.com.br/"));
-        startActivity(intent);
     }
 
 }
