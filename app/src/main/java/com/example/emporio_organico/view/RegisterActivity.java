@@ -53,13 +53,17 @@ public class RegisterActivity extends AppCompatActivity {
                 Snackbar snackbar;
                 if(validarCampos()){
                     Product product = new Product();
+
                     product.setNome(nome.getText().toString());
                     product.setValor(Double.parseDouble(valor.getText().toString()));
                     product.setDescricao(descricao.getText().toString());
                     product.setFornecedor(fornecedor.getText().toString());
+
                     AppDatabase.getInstance(getApplicationContext()).createProductDAO().insert(product);
+
                     snackbar = Snackbar.make(v, "Produto cadastrado com sucesso!", Snackbar.LENGTH_LONG);
                     snackbar.show();
+
                     limparCampos();
                 }
                 else {
@@ -76,6 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
         valor = findViewById(R.id.editTextValor);
         descricao = findViewById((R.id.editTextDescricao));
         fornecedor = findViewById((R.id.editTextFornecedor));
+
         nome.setText("");
         valor.setText("");
         descricao.setText("");
@@ -87,32 +92,21 @@ public class RegisterActivity extends AppCompatActivity {
             layoutNome.setErrorEnabled(true);
             layoutNome.setError("O nome é obrigatório!");
             return false;
-        } else{
-            layoutNome.setErrorEnabled(false);
-        }
-
-       if(valor.getText().toString().trim().equals("")){
+        } else if(valor.getText().toString().trim().equals("")){
             layoutValor.setErrorEnabled(true);
             layoutValor.setError("O valor é obrigatório");
             return false;
-       } else{
-            layoutValor.setErrorEnabled(false);
-       }
-       if(descricao.getText().toString().isEmpty()){
+        } else if(descricao.getText().toString().isEmpty()){
             layoutDescricao.setErrorEnabled(true);
             layoutDescricao.setError("A descricao é obrigatória!");
             return false;
-       } else {
-            layoutDescricao.setErrorEnabled(false);
-       }
-
-       if(fornecedor.getText().toString().isEmpty()){
+        } else if(fornecedor.getText().toString().isEmpty()){
             layoutFornecedor.setErrorEnabled(true);
             layoutFornecedor.setError("O fornecedor é obrigatório!");
             return false;
-       } else {
+        } else {
             layoutFornecedor.setErrorEnabled(false);
-       }
+        }
 
        return true;
     }
