@@ -5,7 +5,6 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.example.emporio_organico.R;
@@ -23,6 +22,7 @@ public class EditProductActivity extends AppCompatActivity {
     private TextInputEditText editValor;
     private TextInputEditText editDescricao;
     private TextInputEditText editFornecedor;
+
     private TextInputLayout layoutNome;
     private TextInputLayout layoutValor;
     private TextInputLayout layoutDescricao;
@@ -86,26 +86,15 @@ public class EditProductActivity extends AppCompatActivity {
             layoutNome.setErrorEnabled(true);
             layoutNome.setError("O nome é obrigatório!");
             return false;
-        } else {
-            layoutNome.setErrorEnabled(false);
-        }
-
-        if(editValor.getText().toString().trim().equals("")) {
+        } else if(editValor.getText().toString().trim().equals("")) {
             layoutValor.setErrorEnabled(true);
             layoutValor.setError("O valor é obrigatório");
             return false;
-        }else{
-            layoutValor.setErrorEnabled(false);
-        }
-        if (editDescricao.getText().toString().isEmpty()){
+        } else if (editDescricao.getText().toString().isEmpty()){
             layoutDescricao.setErrorEnabled(true);
             layoutDescricao.setError("A descricao é obrigatória!");
             return false;
-        } else {
-            layoutDescricao.setErrorEnabled(false);
-        }
-
-        if(editFornecedor.getText().toString().isEmpty()) {
+        } else if(editFornecedor.getText().toString().isEmpty()) {
             layoutFornecedor.setErrorEnabled(true);
             layoutFornecedor.setError("O fornecedor é obrigatório!");
             return false;
