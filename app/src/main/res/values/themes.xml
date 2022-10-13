@@ -3,10 +3,10 @@
     <style name="Theme.Emporioorganico" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/verde_2</item>
-        <item name="colorPrimaryVariant">@color/verde_limao</item>
+        <item name="colorPrimaryVariant">@color/verde</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/verde</item>
+        <item name="colorSecondary">@color/verde_limao</item>
         <item name="colorSecondaryVariant">@color/verde_pas</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
