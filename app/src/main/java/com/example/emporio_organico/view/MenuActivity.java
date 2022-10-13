@@ -19,7 +19,7 @@ public class MenuActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         ListView listaOpcoes = this.findViewById(R.id.lista);
-        String[] itens = {"Cadastro", "Gerenciamento", "O que é um produto orgânico?", "Sobre nós"};
+        String[] itens = {"Cadastro", "Gerenciamento", "O que é um produto orgânico?", "Onde comprar?"};
         ArrayAdapter<String> arrayItens = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,itens);
         listaOpcoes.setAdapter(arrayItens);
         listaOpcoes.setOnItemClickListener(this);
@@ -41,7 +41,7 @@ public class MenuActivity extends AppCompatActivity implements AdapterView.OnIte
                 abrirInfos(v);
                 break;
             case 3:
-
+                abrirOndeComprar(v);
                 break;
             default:
                 intent = new Intent(this, MainActivity.class);
@@ -51,6 +51,11 @@ public class MenuActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void abrirInfos(View view){
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.maeterra.com.br/sobre-mae-terra/7-principios/organicos-cada-vez-mais.html"));
+        startActivity(intent);
+    }
+
+    public void abrirOndeComprar(View view){
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.sintropico.com.br/"));
         startActivity(intent);
     }
 
